@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.vishvak</groupId>
-	<artifactId>lazy-init-demo</artifactId>
+	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lazy-init-demo</name>
 	<description>Demo project for Lazy Initializaition in Spring Boot</description>
