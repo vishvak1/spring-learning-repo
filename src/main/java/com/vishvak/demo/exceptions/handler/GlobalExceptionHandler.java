@@ -5,7 +5,6 @@ import com.vishvak.demo.exceptions.StudentNotFoundException;
 import com.vishvak.demo.response.StudentErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
