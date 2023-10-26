@@ -1,9 +1,10 @@
 package com.vishvak.demo.controllers;
 
-import com.vishvak.demo.dao.EmployeeDAO;
 import com.vishvak.demo.entities.Employee;
+import com.vishvak.demo.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
 //  Use the below code for Constructor Injection
 
@@ -25,6 +26,11 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public List<Employee> getAll(){
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
+    }
+
+    @GetMapping("/employees/{lastName}")
+    public List<Employee> getAll(@PathVariable(name = "lastName") String lastName){
+        return employeeRepository.findByLastName(lastName);
     }
 }
