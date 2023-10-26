@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    // JpaRepsoitory Automatically interprets the name of the function when presented in camel-case and
+    // JpaRepository Automatically interprets the name of the function when presented in camel-case and
     // does the operation automatically
     public List<Employee> findAll();
 
