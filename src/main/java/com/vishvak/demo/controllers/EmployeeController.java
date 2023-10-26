@@ -17,13 +17,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-//  Use the below code for Constructor Injection
-
-//    @Autowired
-//    public EmployeeController(EmployeeDAO employeeDAO){
-//        this.employeeDAO = employeeDAO;
-//    }
-
     @GetMapping("/employees")
     public List<Employee> getAll(){
         return employeeRepository.findAll();
