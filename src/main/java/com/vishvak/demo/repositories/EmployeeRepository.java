@@ -2,9 +2,12 @@ package com.vishvak.demo.repositories;
 import com.vishvak.demo.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
+// You can use the path attribute of the below annotation to modify the sub-path of the endpoints for any Repositories/Entities
+@RepositoryRestResource(path = "members")
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     // JpaRepository Automatically interprets the name of the function when presented in camel-case and
