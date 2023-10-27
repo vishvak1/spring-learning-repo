@@ -29,4 +29,30 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         TypedQuery<Employee> query = entityManager.createQuery("SELECT e from Employee e", Employee.class);
         return query.getResultList();
     }
+
+    @Override
+    public Employee findById(Long id) {
+        Employee e = entityManager.find(Employee.class, id);
+        return e;
+    }
+
+    // merge will insert a new record if the id is not provided however
+    // if the id is provided then UPDATE operation happens instead of ADD
+
+    // NOTE: For the addition of new record to be successful the strategy attribute of @GeneratedValue of the primary key
+    // annotated with @Id should be in accordance with how the Database is configured.
+    // For example, for the @GeneratedValue(strategy = GenerationType.IDENTITY) to work
+    // The database table should be configured to auto-increment on the primary key.
+    // For the @GeneratedValue(strategy = GenerationType.UUID) to work the database table should be
+    // configured to take UUID as value for the primary key
+    @Override
+    public Employee save(Employee e) {
+        Employee dbEmployee = entityManager.merge(e);
+        return dbEmployee;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        entityManager.remove(findById(id));
+    }
 }

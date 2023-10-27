@@ -1,16 +1,15 @@
-package com.vishvak.demo.dao;
+package com.vishvak.demo.service;
 
 import com.vishvak.demo.entities.Employee;
 
 import java.util.List;
 
-public interface EmployeeDAO {
-
+public interface EmployeeService {
     List<Employee> findAll();
 
     Employee findById(Long id);
 
-    Employee save(Employee e);
+    Employee add(Employee e);
 
-    void deleteById(Long id);
+    void delete(Long id);
 }
