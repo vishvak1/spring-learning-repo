@@ -1,12 +1,9 @@
 package com.vishvak.demo.controllers;
 
 import com.vishvak.demo.entities.Employee;
-import com.vishvak.demo.repositories.EmployeeRepository;
+import com.vishvak.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,15 +12,25 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeService employeeService;
 
     @GetMapping("/employees")
-    public List<Employee> getAll(){
-        return employeeRepository.findAll();
+    public List<Employee> getAllEmployees(){
+        return employeeService.findAll();
     }
 
     @GetMapping("/employees/{lastName}")
-    public List<Employee> getAll(@PathVariable(name = "lastName") String lastName){
-        return employeeRepository.findByLastName(lastName);
+    public List<Employee> getAllEmployeesByLastName(@PathVariable(name = "lastName") String lastName){
+        return employeeService.findByLastName(lastName);
+    }
+
+    @PostMapping("/employees")
+    public Employee addEmployee(@RequestBody Employee e){
+        return employeeService.add(e);
+    }
+
+    @DeleteMapping("/employees/{employeeId}")
+    public void deleteEmployee(@PathVariable(name = "employeeId") Long id){
+        employeeService.delete(id);
     }
 }

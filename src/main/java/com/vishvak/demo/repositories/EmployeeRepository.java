@@ -20,4 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query("SELECT e FROM Employee e WHERE e.email = :mailId")
     public List<Employee> findByMailId(String mailId);
 
+    public void deleteById(Long id);
+
+    public Employee save(Employee e);
 }
