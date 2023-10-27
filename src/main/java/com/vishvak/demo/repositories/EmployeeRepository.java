@@ -16,6 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     // All you have to do is just suffix the word find with ByColumnNameInCamelCase. like this
     public List<Employee> findByLastName(String lastName);
 
+    // You can also use custom SQL queries.
     @Query("SELECT e FROM Employee e WHERE e.email = :mailId")
     public List<Employee> findByMailId(String mailId);
 
