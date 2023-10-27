@@ -1,6 +1,6 @@
-package com.vishvak.demo.controllers;
+package com.vishvak.demo.controller;
 
-import com.vishvak.demo.entities.Employee;
+import com.vishvak.demo.entity.Employee;
 import com.vishvak.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

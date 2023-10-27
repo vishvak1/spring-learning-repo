@@ -1,6 +1,6 @@
 package com.vishvak.demo.service;
 
-import com.vishvak.demo.entities.Employee;
+import com.vishvak.demo.entity.Employee;
 
 import java.util.List;
 

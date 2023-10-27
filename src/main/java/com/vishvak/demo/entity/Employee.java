@@ -1,4 +1,4 @@
-package com.vishvak.demo.entities;
+package com.vishvak.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

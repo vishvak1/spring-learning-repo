@@ -1,5 +1,5 @@
-package com.vishvak.demo.repositories;
-import com.vishvak.demo.entities.Employee;
+package com.vishvak.demo.repository;
+import com.vishvak.demo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

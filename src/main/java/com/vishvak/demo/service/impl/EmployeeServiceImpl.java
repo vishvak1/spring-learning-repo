@@ -1,7 +1,7 @@
 package com.vishvak.demo.service.impl;
 
-import com.vishvak.demo.entities.Employee;
-import com.vishvak.demo.repositories.EmployeeRepository;
+import com.vishvak.demo.entity.Employee;
+import com.vishvak.demo.repository.EmployeeRepository;
 import com.vishvak.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
