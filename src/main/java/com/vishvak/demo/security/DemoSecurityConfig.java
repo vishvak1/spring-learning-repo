@@ -13,6 +13,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class DemoSecurityConfig {
 
+    // This type of configuring security for your Spring application is called Programmatic Security.
+    // Gives a more fine-grained control over security logic.Programmatic security is suitable
+    // when you need highly customized security logic that cannot be easily expressed through annotations or declarative means.
+
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
         UserDetails john = User.builder().username("john").password("{noop}test123").roles("EMPLOYEE").build();
