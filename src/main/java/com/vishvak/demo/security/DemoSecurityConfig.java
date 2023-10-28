@@ -8,26 +8,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class DemoSecurityConfig {
 
-    // This type of configuring security for your Spring application is called Programmatic Security.
-    // Gives a more fine-grained control over security logic.Programmatic security is suitable
-    // when you need highly customized security logic that cannot be easily expressed through annotations or declarative means.
-
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
-        UserDetails john = User.builder().username("john").password("{noop}test123").roles("EMPLOYEE").build();
-        // The above line of code is using the Builder pattern.
-        // The {noop} indicates "no-op" or "plain text" password encoding
-
-        UserDetails mary = User.builder().username("mary").password("{noop}test123").roles("EMPLOYEE", "MANAGER").build();
-
-        UserDetails susan = User.builder().username("susan").password("{noop}test123").roles("EMPLOYEE", "MANAGER", "ADMIN").build();
-
-        return new InMemoryUserDetailsManager(john, mary, susan);
+    public UserDetailsManager userDetailsManager(DataSource dataSource){
+        return new JdbcUserDetailsManager(dataSource);
     }
 
     @Bean
