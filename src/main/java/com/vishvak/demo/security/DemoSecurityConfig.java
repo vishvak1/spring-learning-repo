@@ -21,6 +21,7 @@ public class DemoSecurityConfig {
     public InMemoryUserDetailsManager userDetailsManager(){
         UserDetails john = User.builder().username("john").password("{noop}test123").roles("EMPLOYEE").build();
         // The above line of code is using the Builder pattern.
+        // The {noop} indicates "no-op" or "plain text" password encoding
 
         UserDetails mary = User.builder().username("mary").password("{noop}test123").roles("EMPLOYEE", "MANAGER").build();
 
