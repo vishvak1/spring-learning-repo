@@ -4,6 +4,7 @@ import com.vishvak.demo.entity.Employee;
 import com.vishvak.demo.repository.EmployeeRepository;
 import com.vishvak.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepository employeeRepository;
 
     @Override
+    @PreAuthorize("hasRole('EMPLOYEE')")
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
@@ -23,6 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     // in the Repository interface) then the default implementation of findById() returns the object wrapped in Optional Container.
     // like this Optional<Employee> findById(Long id)
     @Override
+    @PreAuthorize("hasRole('EMPLOYEE')")
     public Employee findById(Long id) {
         return employeeRepository.findById(id).orElse(null);
 
@@ -31,11 +34,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @PreAuthorize("hasRole('MANAGER')")
     public Employee add(Employee e) {
         return employeeRepository.save(e);
     }
 
     @Override
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(Long id) {
         employeeRepository.deleteById(id);
     }
