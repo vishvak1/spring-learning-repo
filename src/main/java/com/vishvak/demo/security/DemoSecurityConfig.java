@@ -21,6 +21,8 @@ public class DemoSecurityConfig {
     public UserDetailsManager userDetailsManager(DataSource dataSource){
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
+        // We are using the following methods in order to use the custom table names as per your one accords as opposed to
+        // using the table names users and authorities respectively.
         jdbcUserDetailsManager.setUsersByUsernameQuery("select username, password, enabled from members where username = ?");
 
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select username, authority from roles where username = ?");
