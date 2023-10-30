@@ -23,7 +23,7 @@ public class DemoApplication {
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO){
-		int id = 1;
+		int id = 2;
 
 		System.out.println("Deleting instructor Detail for id: "+id+"...");
 
@@ -31,7 +31,7 @@ public class DemoApplication {
 	}
 
 	private void findInstructorDetail(AppDAO appDAO){
-		int id = 1;
+		int id = 2;
 
 		InstructorDetail instructorDetail = appDAO.findById(id);
 
