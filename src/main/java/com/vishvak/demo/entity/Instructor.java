@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "instructor")
 @NoArgsConstructor
@@ -28,6 +31,10 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
+    @OneToMany(mappedBy = "instructor", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Course> courseList;
+
     public Instructor(String firstName, String lastName, String email){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,5 +49,15 @@ public class Instructor {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    //Add convenience methods for addition of course (for a bidirectional relationship)
+    public void addCourse(Course course){
+        if (courseList == null){
+            courseList = new ArrayList<>();
+        }
+
+        courseList.add(course);
+        course.setInstructor(this);
     }
 }

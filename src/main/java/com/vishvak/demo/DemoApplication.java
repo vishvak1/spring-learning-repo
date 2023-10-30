@@ -1,6 +1,7 @@
 package com.vishvak.demo;
 
 import com.vishvak.demo.dao.AppDAO;
+import com.vishvak.demo.entity.Course;
 import com.vishvak.demo.entity.Instructor;
 import com.vishvak.demo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -18,25 +19,31 @@ public class DemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 		return runner -> {
-			findInstructorDetail(appDAO);
+			CreateCoursesWithInstructor(appDAO);
 		};
 	}
 
-	private void deleteInstructorDetail(AppDAO appDAO){
-		int id = 2;
+	private void CreateCoursesWithInstructor(AppDAO appDAO){
+		Instructor instructor = new Instructor("Susan", "Parker", "susan.parker@gmail.com");
 
-		System.out.println("Deleting instructor Detail for id: "+id+"...");
+		InstructorDetail instructorDetail =
+				new InstructorDetail("https://youtube.com/channel/susan-parker","Video games");
 
-		appDAO.delete(id);
-	}
+		instructor.setInstructorDetail(instructorDetail);
 
-	private void findInstructorDetail(AppDAO appDAO){
-		int id = 2;
+		Course course1 = new Course("Air Guitar - The Ultimate Guide");
+		Course course2 = new Course("Guitar Pinball Masterclass");
 
-		InstructorDetail instructorDetail = appDAO.findById(id);
+		instructor.addCourse(course1);
+		instructor.addCourse(course2);
 
-		System.out.println("InstructorDetail found:\t"+instructorDetail.toString());
+		// Since CascaseType.PERSIST is being used in both Course and Instructor classes that means that whenever either course object or
+		// instructor object is saved the other associated class will also be persisted. Here in this case Instructor is being saved and
+		// since it was annotated with cascade persist the associated course objects are also persisted and saved in the database.
 
-		System.out.println("Instructor for "+id+":\t"+instructorDetail.getInstructor().toString());
+		System.out.println("Saving Instructor..."+instructor);
+		appDAO.save(instructor);
+
+		System.out.println("Done!");
 	}
 }
