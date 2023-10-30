@@ -37,7 +37,7 @@ public class DemoApplication {
 		instructor.addCourse(course1);
 		instructor.addCourse(course2);
 
-		// Since CascaseType.PERSIST is being used in both Course and Instructor classes that means that whenever either course object or
+		// Since CascadeType.PERSIST is being used in both Course and Instructor classes that means that whenever either course object or
 		// instructor object is saved the other associated class will also be persisted. Here in this case Instructor is being saved and
 		// since it was annotated with cascade persist the associated course objects are also persisted and saved in the database.
 
