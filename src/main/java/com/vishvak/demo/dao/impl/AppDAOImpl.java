@@ -2,6 +2,7 @@ package com.vishvak.demo.dao.impl;
 
 import com.vishvak.demo.dao.AppDAO;
 import com.vishvak.demo.entity.Instructor;
+import com.vishvak.demo.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,21 +19,15 @@ public class AppDAOImpl implements AppDAO {
     }
 
     @Override
-    @Transactional
-    public void save(Instructor instructor){
-        entityManager.persist(instructor);
-    }
-
-    @Override
-    public Instructor findById(int id) {
-        return entityManager.find(Instructor.class, id);
+    public InstructorDetail findById(int id) {
+        return entityManager.find(InstructorDetail.class, id);
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-        Instructor instructor = entityManager.find(Instructor.class, id);
+        InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, id);
 
-        entityManager.remove(instructor);
+        entityManager.remove(instructorDetail);
     }
 }

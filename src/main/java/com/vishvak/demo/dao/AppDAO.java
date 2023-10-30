@@ -1,11 +1,9 @@
 package com.vishvak.demo.dao;
 
-import com.vishvak.demo.entity.Instructor;
+import com.vishvak.demo.entity.InstructorDetail;
 
 public interface AppDAO {
-    void save(Instructor instructor);
-
-    Instructor findById(int id);
+    InstructorDetail findById(int id);
 
     void delete(int id);
 }

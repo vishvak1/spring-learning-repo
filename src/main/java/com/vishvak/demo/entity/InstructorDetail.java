@@ -21,6 +21,15 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
+    // We are using mappedBy attribute in the OneToOne annotation here because we are establishing a bidirectional mapping
+    // In the mappedBy attribute the value should be not that of the column name but of the field/variable name of the foreign key
+    // in the other Entity class.
+
+    // Since we have also enabled Cascading that means if an object of "instructor_detail" has been persisted or removed then the same will
+    // be performed for the associated instructor table object.
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    private Instructor instructor;
+
     public InstructorDetail(String youtubeChannel, String hobby){
         this.youtubeChannel = youtubeChannel;
         this.hobby = hobby;
